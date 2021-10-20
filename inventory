@@ -1,0 +1,9 @@
+[web]
+ansible1
+ansible3
+[db]
+ansible2
+
+[datacenter:children]
+web
+db

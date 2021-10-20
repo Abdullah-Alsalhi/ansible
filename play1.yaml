@@ -1,0 +1,22 @@
+---
+- name: Install httpd
+  hosts: web
+  become: True
+  tasks:
+    - name: Install Required Packages
+      yum:
+        name:
+          - httpd
+        state: present
+    - name: Enable httpd service 
+      service: 
+        name: httpd
+        enabled: yes
+        state: started
+    - name: Create Index
+      copy:
+        content: "<h1>Welcome to my website</h1>"
+        dest: /var/www/html/index.html
+        mode: 0644
+        setype: httpd_sys_content_t
+
